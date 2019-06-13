@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Untitled 1</title>
+<style>
+td {
+    border: 1px solid;
+    width:20px;height:20px;
+    text-align:center;
+   /* background:yellow;*/
+}
+</style>
+</head>
+
+<body>
+
+<center>
+<button id="skata" onclick="myFunction()">enarksi</button>
+<table id="table1">
+<tbody>
+                    <tr bgcolor="yellow">
+                        <td onclick="changeColor(this)" class="normal" id="cell00">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="normal" id="cell01">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="normal" id="cell02">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="red" id="cell03">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="red" id="cell04">&nbsp;</td>
+
+                    </tr>
+                    <tr bgcolor="yellow">
+                        <td onclick="changeColor(this)"  class="normal" id="cell10">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="normal" id="cell11">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="normal" id="cell12">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="red" id="cell13">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="red" id="cell14">&nbsp;</td>
+                    </tr>
+                    <tr bgcolor="yellow">
+                        <td onclick="changeColor(this)" class="normal" id="cell20">&nbsp;</td>
+                        <td onclick="changeColor(this)" class="normal" id="cell21">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="normal" id="cell22">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell23">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell24">&nbsp;</td>
+                    </tr>
+                    <tr bgcolor="yellow">
+                        <td onclick="changeColor(this)"  class="normal" id="cell30">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="normal" id="cell31">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="normal" id="cell32">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell33">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell34">&nbsp;</td
+                    </tr>
+                    <tr bgcolor="yellow">
+                        <td onclick="changeColor(this)"  class="normal" id="cell40">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="normal" id="cell41">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="normal" id="cell42">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell43">&nbsp;</td>
+                        <td onclick="changeColor(this)"  class="red" id="cell44">&nbsp;</td
+                    </tr>
+
+                </tbody>
+                </table>
+                <div id="countdown"></div>
+
+
+</center>
+
+
+
+</body>
+<script>
+var table1 = document.getElementById('table1');
+<!--- disable to koubi enarksi--->
+var maxLength = 5;
+function CreateLottoValues() {
+    return Math.floor(Math.random() * 10 + 0);
+    
+}
+
+function myFunction(){
+  document.getElementById("skata").disabled = true;
+  MO = 0;
+ count = 0;
+  for (var i = 0; i < maxLength; i++) {
+        for (var j = 0; j < maxLength; j++) {
+            tmp = 'cell' + i + j;
+            document.getElementById(tmp).innerHTML = CreateLottoValues();
+            table1.rows[i].cells[j].bgColor = (Math.ceil(Math.random() * 2) == 1) ? "green" : "red";
+        }
+    }
+    
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  timeleft -= 1;
+  if(timeleft <= -1){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "Finished";
+    
+    //alert("prasina " + prasina + "kokkina " + kokkina );
+
+  }
+}, 1000);
+}
+ 
+    
+    
+<!--- disable to koubi enarksi--->
+var prasina=0;
+var kokkina=0;
+ var count=0;
+var MO=0;
+
+function changeColor(cell){
+		
+               if (cell.bgColor == "green")
+                {
+                console.log('prasina');
+                    cell.bgColor = "red";
+                    MO += parseInt(cell.innerHTML)
+                    prasina++;
+                    cell.innerHTML++;
+
+                    
+                }
+                else
+                {
+                console.log('kokkina');
+                    cell.bgColor = "green";
+                    MO += parseInt(cell.innerHTML);                    kokkina++;
+                    cell.innerHTML--;
+
+                   
+                }
+                
+
+                if (++count == 10){
+               console.log(count);
+  document.getElementById("skata").disabled = false;
+  alert(MO/10) ;
+  }
+            }
+  
+</script>
+
+
+</html>

@@ -1,0 +1,89 @@
+﻿<!-- 
+https://sites.google.com/site/gtiteithe/ergasteria/ergasterio-11-syndyastikes-kai-epanaleptikes-askeseis
+Askhsh 9
+-->
+
+<html>
+    <head>
+        
+
+        <script>
+            var products=[];
+            products.push(['poutses', 'https://avatars1.githubusercontent.com/u/19525912?s=40&v=4' , '222' ]);
+            products.push(['mounia', 'https://avatars1.githubusercontent.com/u/19525912?s=40&v=4' , '333' ]);
+            products.push(['skata', 'https://avatars1.githubusercontent.com/u/19525912?s=40&v=4' , '444' ]);
+            products.push(['peos', 'https://avatars1.githubusercontent.com/u/19525912?s=40&v=4' , '222' ]);
+            products.push(['vuzia', 'https://avatars1.githubusercontent.com/u/19525912?s=40&v=4' , '666' ]);
+
+            var totalPrice = 0;
+            function fillTable()
+            {
+                var table1 = document.getElementById('table1');
+                for(var i = 0, j = products.length; i < j; i++)
+                {
+                    var tableRow, TableCell;
+                   // dimiourgei tin proti grammi kai to proto cell 
+                    tableRow = table1.insertRow(-1);
+                    tableCell = tableRow.insertCell(-1);
+                    
+                    // vazei ton titlo
+                    tableCell.innerHTML = products[i][0];
+                    
+                    // keli gia to url , de xreiazetai row kainourgio afou to kanei pano mia fora 
+                    tableCell = tableRow.insertCell(-1);
+                    
+                    //url
+                    tableCell.innerHTML = "<img style='max-width:50px;' src=\" " + products[i][1] + " \">"; 
+                    tableCell = tableRow.insertCell(-1);
+                    
+                    //timi
+                    tableCell.innerHTML = products[i][2];
+                    
+                    //telos 1 erotima
+                    tableCell = tableRow.insertCell(-1);
+                    tableCell.innerHTML = "<input type=\"button\" id=\"" + i + "\" value=\"prosthese\" onclick=\"addItem(this)\"/>";
+                }
+            }
+            function addItem(button)
+            {
+                var table2 = document.getElementById('table2');
+                var tableRow, tableCell;
+                tableRow = table2.insertRow(-1);
+                tableCell = tableRow.insertCell(-1);
+                
+                
+                tableCell.innerHTML = button.id;
+                tableCell = tableRow.insertCell(-1);
+                //timi tou proiontos
+                tableCell.innerHTML = products[button.id][2];
+                var posotita = window.prompt("Dose Posotita");
+                tableCell = tableRow.insertCell(-1);
+                tableCell.innerHTML = posotita;
+                tableCell = tableRow.insertCell(-1);
+                
+                //meriko sunolo
+                tableCell.innerHTML = posotita * products[button.id][2];
+                totalPrice += (posotita * products[button.id][2]);
+                document.getElementById("total").innerHTML = "Sunolo:" + totalPrice;
+            }
+        </script>
+    </head>
+
+    <body onload="fillTable()">
+
+        <table id="table1" border="1">
+        </table>
+
+        <div style="position:absolute; top:0; right:0;">
+            <table id="table2" border="1">
+                <tr>
+                    <td>ID</td>
+                    <td>Timi</td>
+                    <td>Posotita</td>
+                    <td>Meriko Sunolo</td>
+                </tr>
+            </table>
+            <p id="total"></p>
+        </div>
+    </body>
+</html>
